@@ -14,5 +14,5 @@ Está toda a documentação realizada previamente à automação, junto com os c
 ---
 
 ### Ferramentas Utilizadas:
-* Postman (v0000) -> ![Download](https://web.postman.co/workspace/My-Workspace~0295b87e-ee65-4b01-8765-467b77e76613/overview) ou ![Acesso pelo browser](https://web.postman.co/workspace/My-Workspace~0295b87e-ee65-4b01-8765-467b77e76613/overview)
+* Postman (v0000) -> [Download](https://web.postman.co/workspace/My-Workspace~0295b87e-ee65-4b01-8765-467b77e76613/overview) ou [Acesso pelo browser](https://web.postman.co/workspace/My-Workspace~0295b87e-ee65-4b01-8765-467b77e76613/overview)
 * Documentação da Server Rest -> https://serverest.dev/ 
