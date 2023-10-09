@@ -6,7 +6,7 @@ No presente projeto, encontra-se o plano de testes de automatixados da rota de u
 <br>
 ⚠️ Warning: O projeto foi desenvolvido com o **sistema operacional Windows**, ou seja, todas as aplicações foram instaladas na versão para Windows e as orientações do README são voltadas para o mesmo. A recomendação para o bom funcionamento da automação, é que se utilize as mesmas versões, o mesmo sistema operacional e os mesmos programas.
 
-### Diretórios: 
+### Arquivos: 
 * ↳ mapa_mental: <br>
 Esta o mapa mental, usado como base para o desenvolvimento dos testes.
 
