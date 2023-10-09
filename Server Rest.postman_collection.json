@@ -1,0 +1,596 @@
+{
+	"info": {
+		"_postman_id": "6a275acc-1821-4fa4-a45b-e47e2ff4e446",
+		"name": "Server Rest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30236583"
+	},
+	"item": [
+		{
+			"name": "Rota: Usuários",
+			"item": [
+				{
+					"name": "Listar Usuários Cadastrados",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://serverest.dev/usuarios",
+							"protocol": "https",
+							"host": [
+								"serverest",
+								"dev"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pesquisando Usuário por Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status de resposta deve ser 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Propriedade nome deve conter na resposta\", function () {\r",
+									"  const responseBody = pm.response.json();\r",
+									"  pm.expect(responseBody).to.have.property('quantidade', 1);\r",
+									"  pm.expect(responseBody).to.have.property('usuarios');\r",
+									"  pm.expect(responseBody.usuarios[0]).to.have.property('nome', 'Fulano da Silva');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://serverest.dev/usuarios?email=testerrrro%40qa.com.br",
+							"protocol": "https",
+							"host": [
+								"serverest",
+								"dev"
+							],
+							"path": [
+								"usuarios"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "testerrrro%40qa.com.br"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Usuário por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "serverest.dev/usuarios/xdm2yt5Aw6dUybHh",
+							"host": [
+								"serverest",
+								"dev"
+							],
+							"path": [
+								"usuarios",
+								"xdm2yt5Aw6dUybHh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Usuário",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Cadastro realizado com sucesso\", function () {\r",
+									"  pm.response.to.have.jsonBody(\"message\", \"Cadastro realizado com sucesso\", \"id\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Email cadastrado\", function () {\r",
+									"  pm.response.to.have.jsonBody(\"message\", \"Este email já está sendo usado\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Fulano da Silva\",\r\n  \"email\": \"testerrrro@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://serverest.dev/usuarios",
+							"protocol": "https",
+							"host": [
+								"serverest",
+								"dev"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Usuário",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"Fulano da Silva\",\r\n  \"email\": \"beltrano@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "serverest.dev/usuarios/IyFKXUZR4k5oW61v",
+							"host": [
+								"serverest",
+								"dev"
+							],
+							"path": [
+								"usuarios",
+								"IyFKXUZR4k5oW61v"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir Usuário",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "serverest.dev/usuarios/IyFKXUZR4k5oW61v",
+							"host": [
+								"serverest",
+								"dev"
+							],
+							"path": [
+								"usuarios",
+								"IyFKXUZR4k5oW61v"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cadastrar Novo Usuário",
+			"item": [
+				{
+					"name": "Cadastrar usuário",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status de resposta deve ser 201\", function () {\r",
+									"  pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"O usuário foi criado com sucesso\", function () {\r",
+									"  pm.response.to.have.jsonBody(\"message\", \"Cadastro realizado com sucesso\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nome\": \"tesste\",\r\n  \"email\": \"treqa@fa.com\",\r\n  \"password\": \"t\",\r\n  \"administrador\": \"true\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://serverest.dev/usuarios",
+							"protocol": "https",
+							"host": [
+								"serverest",
+								"dev"
+							],
+							"path": [
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login válido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status de resposta deve ser 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"testerrrr@qa.com.br\",\r\n  \"password\": \"teste\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "https://serverest.dev/login",
+							"protocol": "https",
+							"host": [
+								"serverest",
+								"dev"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Iválido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.sendRequest({\r",
+									"  url: \"https://serverest.dev/v1/login\",\r",
+									"  method: \"POST\",\r",
+									"  header: {\r",
+									"    \"Content-Type\": \"application/json\"\r",
+									"  },\r",
+									"  body: {\r",
+									"    mode: \"raw\",\r",
+									"    raw: JSON.stringify({\r",
+									"      email: \"testerrrro@qa.com.br\",\r",
+									"      password: \"222\" \r",
+									"    })\r",
+									"  }\r",
+									"}, function (err, response) {\r",
+									"  if (err) {\r",
+									"    pm.test(\"Erro na solicitação de login\", function () {\r",
+									"      pm.expect.fail(\"Erro na solicitação de login: \" + err);\r",
+									"    });\r",
+									"  } else {\r",
+									"    if (response.code === 200) {\r",
+									"      pm.test(\"Login realizado com sucesso\", function () {\r",
+									"        pm.expect(response.code).to.eql(200);\r",
+									"      });\r",
+									"    } else if (response.code === 401) {\r",
+									"      pm.test(\"Senha ou email incorretos\", function () {\r",
+									"        pm.expect(response.code).to.eql(401);\r",
+									"        pm.expect(response.json()).to.have.property(\"message\", \"Email e/ou senha inválidos\");\r",
+									"      });\r",
+									"    } else {\r",
+									"      pm.test(\"Status de resposta inesperado\", function () {\r",
+									"        pm.expect(response.json()).to.have.property(\"message\", \"Email e/ou senha inválidos\");\r",
+									"      });\r",
+									"    }\r",
+									"  }\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"teqa2@fa.com\",\r\n    \"password\": \"t\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "https://serverest.dev/login",
+							"protocol": "https",
+							"host": [
+								"serverest",
+								"dev"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Excluir",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status de resposta deve ser 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "serverest.dev/usuarios/xdm2yt5Aw6dUybHh",
+							"host": [
+								"serverest",
+								"dev"
+							],
+							"path": [
+								"usuarios",
+								"xdm2yt5Aw6dUybHh"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Editar Usuário",
+			"item": [
+				{
+					"name": "Pesquisando Usuário por Email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status de resposta deve ser 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Propriedade nome deve conter na resposta\", function () {\r",
+									"  const responseBody = pm.response.json();\r",
+									"  pm.expect(responseBody).to.have.property('quantidade', 1);\r",
+									"  pm.expect(responseBody).to.have.property('usuarios');\r",
+									"  pm.expect(responseBody.usuarios[0]).to.have.property('nome', 'Fulano da Silva');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://serverest.dev/usuarios?nome=.",
+							"protocol": "https",
+							"host": [
+								"serverest",
+								"dev"
+							],
+							"path": [
+								"usuarios"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "te@qa.com.br",
+									"disabled": true
+								},
+								{
+									"key": "nome",
+									"value": "."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Usuário",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "serverest.dev/usuarios/xdm2yt5Aw6dUybHh",
+							"host": [
+								"serverest",
+								"dev"
+							],
+							"path": [
+								"usuarios",
+								"xdm2yt5Aw6dUybHh"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
